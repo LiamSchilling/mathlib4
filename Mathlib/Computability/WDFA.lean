@@ -1,5 +1,5 @@
 /-
-Copyright (c) 2020 William (Liam) Schilling. All rights reserved.
+Copyright (c) 2026 William (Liam) Schilling. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: William (Liam) Schilling
 -/
@@ -64,15 +64,15 @@ variable (M : WDFA α σ γ) [DecidablePred (· ∈ M.auto.accept)]
 instance [Inhabited σ] [Inhabited γ] : Inhabited (WDFA α σ γ) :=
   ⟨default, default, fun _ _ => default, fun _ => default⟩
 
-/-- Access the underlying transition function -/
+/-- Access the underlying transition function. -/
 abbrev step :=
   M.auto.step
 
-/-- Access the underlying start state -/
+/-- Access the underlying start state. -/
 abbrev start :=
   M.auto.start
 
-/-- Access the underlying accepting states -/
+/-- Access the underlying accepting states. -/
 abbrev accept :=
   M.auto.accept
 
@@ -90,7 +90,7 @@ def eval : List α → σ × γ
 
 /-- `M.transduceFrom s y` is the partial function that
 outputs `y` with accumulated transition weight from `s` when
-the input string is accepted by the underlying automaton from `s` -/
+the input string is accepted by the underlying automaton from `s`. -/
 def transduceFrom (s : σ) (y : γ) : List α → Option γ
 | x =>
   let (s, y) := M.evalFrom s y x
@@ -98,7 +98,7 @@ def transduceFrom (s : σ) (y : γ) : List α → Option γ
 
 /-- `M.transduce` is the partial function that
 outputs the total accumulated weight from `M.start` when
-the input string is accepted by the underlying automaton -/
+the input string is accepted by the underlying automaton. -/
 def transduce : List α → Option γ
 | x =>
   let (s, y) := M.eval x
